@@ -1,0 +1,6 @@
+{
+    "adjectives": ["Leather", "Golden", "Chainmail", "Iron", "Diamond", "Netherite"],
+    "types": ["Helmet", "Chestplate", "Leggings", "Boots"],
+    "bonus": ["with"],
+    "enchantment": ["Mending", "Protection", "Projectile Protection", "Fire Protection", "Blast Protection", "Unbreaking"]
+}
