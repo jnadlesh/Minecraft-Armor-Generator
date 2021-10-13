@@ -2,5 +2,8 @@
     "adjectives": ["Leather", "Golden", "Chainmail", "Iron", "Diamond", "Netherite"],
     "types": ["Helmet", "Chestplate", "Leggings", "Boots"],
     "bonus": ["with"],
-    "enchantment": ["Mending", "Protection", "Projectile Protection", "Fire Protection", "Blast Protection", "Unbreaking"]
+    "enchantment_helmet": ["Mending", "Protection", "Projectile Protection", "Fire Protection", "Blast Protection", "Unbreaking", "Thorns", "Respiration", "Aqua Affinity"],
+    "enchantment_chestplate": ["Mending", "Protection", "Projectile Protection", "Fire Protection", "Blast Protection", "Unbreaking", "Thorns"],
+    "enchantment_leggings": ["Mending", "Protection", "Projectile Protection", "Fire Protection", "Blast Protection", "Unbreaking", "Thorns"],
+    "enchantment_boots": ["Mending", "Protection", "Projectile Protection", "Fire Protection", "Blast Protection", "Unbreaking", "Thorns", "Feather Falling", "Depth Strider", "Frost Walker", "Soul Speed"]
 }

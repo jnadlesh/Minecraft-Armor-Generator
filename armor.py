@@ -18,7 +18,45 @@ def addNumber(x):
     i = ""
     if x == "Mending":
         pass
+    elif x == "Frost Walker":
+        rnd_number = r.randrange(2)
+        if rnd_number == 0:
+            i = "I"
+        if rnd_number == 1:
+            i = "II"
     elif x == "Unbreaking":
+        rnd_number = r.randrange(3)
+        if rnd_number == 0:
+            i = "I"
+        if rnd_number == 1:
+            i = "II"
+        if rnd_number == 2:
+            i = "III"
+    elif x == "Thorns":
+        rnd_number = r.randrange(3)
+        if rnd_number == 0:
+            i = "I"
+        if rnd_number == 1:
+            i = "II"
+        if rnd_number == 2:
+            i = "III"
+    elif x == "Soul Speed":
+        rnd_number = r.randrange(3)
+        if rnd_number == 0:
+            i = "I"
+        if rnd_number == 1:
+            i = "II"
+        if rnd_number == 2:
+            i = "III"
+    elif x == "Depth Strider":
+        rnd_number = r.randrange(3)
+        if rnd_number == 0:
+            i = "I"
+        if rnd_number == 1:
+            i = "II"
+        if rnd_number == 2:
+            i = "III"
+    elif x == "Respiration":
         rnd_number = r.randrange(3)
         if rnd_number == 0:
             i = "I"
@@ -46,7 +84,10 @@ def generateArmor():
     adjectives = data["adjectives"]
     types = data["types"]
     bonus = "with"
-    enchantments = data["enchantment"]
+    enchantment_helmet = data["enchantment_helmet"]
+    enchantment_chestplate = data["enchantment_chestplate"]
+    enchantment_leggings = data["enchantment_leggings"]
+    enchantment_boots = data["enchantment_boots"]
     new_enchantments = ""
 
     new_armor.a_adjective = adjectives[r.randrange(0, len(adjectives))]
@@ -58,9 +99,22 @@ def generateArmor():
     if index == 1: 
 
         new_armor.a_bonus = bonus
-        new_armor.a_enchantments = enchantments[r.randrange(0, len(enchantments))] 
+        if new_armor.a_types == "Helmet":
+            new_armor.a_enchantments = enchantment_helmet[r.randrange(0, len(enchantment_helmet))]
+        if new_armor.a_types == "Chestplate":
+            new_armor.a_enchantments = enchantment_chestplate[r.randrange(0, len(enchantment_chestplate))] 
+        if new_armor.a_types == "Leggings":
+            new_armor.a_enchantments = enchantment_leggings[r.randrange(0, len(enchantment_leggings))] 
+        if new_armor.a_types == "Boots":
+            new_armor.a_enchantments = enchantment_boots[r.randrange(0, len(enchantment_boots))] 
+            if new_armor.a_enchantments == "Frost Walker":
+                new_list.append("Depth Strider")
+            if new_armor.a_enchantments == "Depth Strider":
+                new_list.append("Frost Walker")
         new_list.append(new_armor.a_enchantments) 
         if new_armor.a_enchantments == "Mending":
+            pass
+        elif new_armor.a_enchantments == "Aqua Affinity":
             pass
         else:
             new_armor.a_enchantments_number = addNumber(new_armor.a_enchantments)
@@ -69,10 +123,23 @@ def generateArmor():
 
         index = r.randint(0,1) 
         while index == 1:
-            new_enchantments = enchantments[r.randrange(0, len(enchantments))]
+            if new_armor.a_types == "Helmet":
+                new_enchantments = enchantment_helmet[r.randrange(0, len(enchantment_helmet))]
+            if new_armor.a_types == "Chestplate":
+                new_enchantments = enchantment_chestplate[r.randrange(0, len(enchantment_chestplate))] 
+            if new_armor.a_types == "Leggings":
+                new_enchantments = enchantment_leggings[r.randrange(0, len(enchantment_leggings))] 
+            if new_armor.a_types == "Boots":
+                new_enchantments = enchantment_boots[r.randrange(0, len(enchantment_boots))]
+                if new_enchantments == "Frost Walker":
+                    new_list.append("Depth Strider")
+                if new_enchantments == "Depth Strider":
+                    new_list.append("Frost Walker")
             if new_enchantments not in new_list:
                 new_list.append(new_enchantments)
                 if new_enchantments == "Mending":
+                    pass
+                elif new_enchantments == "Aqua Affinity":
                     pass
                 else:
                     new_enchantment_number = addNumber(new_enchantments)
@@ -82,16 +149,35 @@ def generateArmor():
             index = r.randint(0,1)
 
         else:
-            print("{} {} {} {}".format(new_armor.a_adjective, new_armor.a_types, new_armor.a_bonus, new_armor.a_enchantments))
+            armor_with_enchants = ("{} {} {} {}".format(new_armor.a_adjective, new_armor.a_types, new_armor.a_bonus, new_armor.a_enchantments))
+            return armor_with_enchants
     else:
-        print("{} {}".format(new_armor.a_adjective, new_armor.a_types))
+        armor_without_enchants = ("{} {}".format(new_armor.a_adjective, new_armor.a_types))
+        return armor_without_enchants
 
 
-def generateList():
-    i = 0
-    while i < 500:
-        generateArmor()
-        i += 1
+def generate_list(length):
+    """Generate list of armor. No duplicates."""
+    armor_list = []
+    for i in range(length):
+        newArmor = generateArmor()
 
-generateList()
+        dupe = False
+        dupe_count = 0
+        for arm in armor_list:
+            if(arm == newArmor):
+                dupe = True
+                dupe_count += 1
+                break
 
+        if not dupe:
+            armor_list.append(newArmor)
+    
+    armor_list.sort()
+    
+    for i in range(len(armor_list)):
+        print(armor_list[i])
+        
+    print(len(armor_list), "Prints")
+
+generate_list(10000)
