@@ -25,39 +25,7 @@ def addNumber(x):
             i = "I"
         if rnd_number == 1:
             i = "II"
-    elif x == "Unbreaking":
-        rnd_number = r.randrange(3)
-        if rnd_number == 0:
-            i = "I"
-        if rnd_number == 1:
-            i = "II"
-        if rnd_number == 2:
-            i = "III"
-    elif x == "Thorns":
-        rnd_number = r.randrange(3)
-        if rnd_number == 0:
-            i = "I"
-        if rnd_number == 1:
-            i = "II"
-        if rnd_number == 2:
-            i = "III"
-    elif x == "Soul Speed":
-        rnd_number = r.randrange(3)
-        if rnd_number == 0:
-            i = "I"
-        if rnd_number == 1:
-            i = "II"
-        if rnd_number == 2:
-            i = "III"
-    elif x == "Depth Strider":
-        rnd_number = r.randrange(3)
-        if rnd_number == 0:
-            i = "I"
-        if rnd_number == 1:
-            i = "II"
-        if rnd_number == 2:
-            i = "III"
-    elif x == "Respiration":
+    elif x == "Unbreaking" or x == "Thorns" or x == "Soul Speed" or x == "Depth Stider" or x == "Respiration":
         rnd_number = r.randrange(3)
         if rnd_number == 0:
             i = "I"
