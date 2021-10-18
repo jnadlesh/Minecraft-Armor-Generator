@@ -1,5 +1,6 @@
 import json
 import random as r
+import timeit
 
 file = open('./data.json')
 data = json.load(file)
@@ -155,19 +156,21 @@ def generateArmor():
         armor_without_enchants = ("{} {}".format(new_armor.a_adjective, new_armor.a_types))
         return armor_without_enchants
 
-
 def generate_list(length):
     """Generate list of armor. No duplicates."""
+    seconds = 0
+    st = timeit.default_timer()
+    f = open("armor.txt", "r+")
+    f.truncate()
+    f.close()
     armor_list = []
     for i in range(length):
         newArmor = generateArmor()
 
         dupe = False
-        dupe_count = 0
         for arm in armor_list:
             if(arm == newArmor):
                 dupe = True
-                dupe_count += 1
                 break
 
         if not dupe:
@@ -176,8 +179,26 @@ def generate_list(length):
     armor_list.sort()
     
     for i in range(len(armor_list)):
-        print(armor_list[i])
-        
-    print(len(armor_list), "Prints")
+        f = open("armor.txt", "a")
+        f.write(armor_list[i] + "\n")
+        f.close()
+    seconds = round(timeit.default_timer() - st)
+    seconds = seconds % (24 * 3600)
+    hour = seconds // 3600
+    seconds %= 3600
+    minutes = seconds // 60
+    seconds %= 60
+    if seconds > 0 and minutes == 0 and hour == 0:
+        print(len(armor_list), f"Prints to armor.txt in {seconds} second(s)") 
+    if minutes > 0 and hour == 0:
+        print(len(armor_list), f"Prints to armor.txt in {minutes} minute(s) and {seconds} second(s)")
+    if hour > 0:
+        print(len(armor_list), f"Prints to armor.txt in {hour} hour(s), {minutes} minute(s), and {seconds} second(s)")
 
-generate_list(10000)
+
+
+
+
+
+
+generate_list(50000)
